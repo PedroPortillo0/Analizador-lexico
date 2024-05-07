@@ -86,14 +86,18 @@ input[type="file"] {
     </header>
     <main>
         <section id="section1">
-            <input class="subirArchivo" type="file" id="file" accept=".txt">
-            <button>Subir y Ánalizar</button>
-            <p>Inserta el código para analizar</p>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
+                <center>
+                    <div>
+                        <input class="subirArchivo" type="file" id="file" name="file" accept=".txt">
+                    </div>
+                    <button type="submit">Subir y Ánalizar</button>
+                </center>
+                <p>Inserta el código para analizar</p>
                 <textarea name="code" placeholder="Inserte Aquí"></textarea>
-                    <center><div>
-                        <button type="submit">Analizar Código</button>
-                    </center></div>
+                <center><div>
+                    <button type="submit">Analizar Código</button>
+                </center></div>
             </form>
         </section>
         <div class="fila">
@@ -108,6 +112,6 @@ input[type="file"] {
                 {% endfor %}
             </div>
         </div>
-    </main>    
+    </main>   
 </body>
 </html>

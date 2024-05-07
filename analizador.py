@@ -66,7 +66,14 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        code = request.form['code']
+        if 'file' in request.files:
+            file = request.files['file']
+            if file.filename.endswith('.txt'):
+                code = file.read().decode('utf-8')
+            else:
+                return "File type not supported"
+        else:
+            code = request.form['code']
         lexer.input(code)
         line_counter = 1
         tokens = []
