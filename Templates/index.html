@@ -86,14 +86,16 @@ input[type="file"] {
     </header>
     <main>
         <section id="section1">
+        <form method="POST" enctype="multipart/form-data">
+            <center>
+                <div>
+                    <input class="subirArchivo" type="file" id="file" name="file" accept=".txt">
+                </div>
+                <button type="submit">Subir y Ánalizar</button>
+                <p>Inserta el código para analizar</p>
+            </center>
+        </form>
             <form method="POST" enctype="multipart/form-data">
-                <center>
-                    <div>
-                        <input class="subirArchivo" type="file" id="file" name="file" accept=".txt">
-                    </div>
-                    <button type="submit">Subir y Ánalizar</button>
-                    <p>Inserta el código para analizar</p>
-                </center>
                 <textarea name="code" placeholder="Inserte Aquí"></textarea>
                 <center><div>
                     <button type="submit">Analizar Código</button>
