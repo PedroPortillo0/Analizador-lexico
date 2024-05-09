@@ -2,6 +2,7 @@ from flask import Flask, request, render_template
 import ply.lex as lex
 
 tokens = (
+    'IDENTIFIER',
     'FOR',
     'IF',
     'DO',
@@ -11,35 +12,37 @@ tokens = (
     'RPAREN',
 )
 
+
 def t_FOR(t):
-    r'for|FOR'
+    r'\bfor\b|\bFOR\b'
     t.type = 'FOR'
     t.description = 'Reservada for'
     return t
 
 def t_IF(t):
-    r'if|IF'
+    r'\bif\b|\bIF\b'
     t.type = 'IF'
     t.description = 'Reservada if'
     return t
 
 def t_DO(t):
-    r'do|DO'
+    r'\bdo\b|\bDO\b'
     t.type = 'DO'
     t.description = 'Reservada do'
     return t
 
 def t_WHILE(t):
-    r'while|WHILE'
+    r'\bwhile\b|\bWHILE\b'
     t.type = 'WHILE'
     t.description = 'Reservada while'
     return t
 
 def t_ELSE(t):
-    r'else|ELSE'
+    r'\belse\b|\bELSE\b'
     t.type = 'ELSE'
     t.description = 'Reservada else'
     return t
+
 
 def t_LPAREN(t):
     r'\('
@@ -53,6 +56,12 @@ def t_RPAREN(t):
     t.description = 'Parentesis de cierre'
     return t
 
+def t_IDENTIFIER(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = 'IDENTIFIER'
+    t.description = 'Identificador'
+    return t
+
 t_ignore = ' \t\n'
 
 def t_error(t):
@@ -62,6 +71,7 @@ def t_error(t):
 lexer = lex.lex()
 
 app = Flask(__name__)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():

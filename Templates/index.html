@@ -3,106 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tareaita-Alfaro</title>
-</head>
-<body class="body">
+    <title>Análisis Lexicográfico</title>
     <style>
-.body{
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #000000;
-}
-.titulio{
-    font-size: 3.25rem;
-    font-weight: bold;
-    color: #b9b424aa;
-    text-align: center;
-    margin-top: 3;
-}
-button{
-    color: #fdfdfd;
-    text-align: center;
-    font-size: 1.5rem;
-    border-radius: 2rem;
-    background-color: #b9b424aa;
-    height: 6rem;
-    width: 15rem;
-}
-p{
-    color: #b9b424aa;
-    font-size: 2.25rem;
-}
-textarea{
-    font-size: 1.25rem;
-    border-radius: 2rem;
-    padding: 1rem;
-    width: 70vw;
-    height: 30vh;
-    margin: 1rem;
-    color: rgb(77, 77, 77);
-}
-.subirArchivo{
-    text-align: center;
-    color: #b9b424aa;
-    border-radius: 1rem;
-    background-color: #000000;
-    
-}
-#section1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; 
-}
-
-input[type="file"] {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-    font-size: 1.7rem;
-}
-
-.fila{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.fila > div {
-    background-color: white;
-    padding: 1.25rem;
-    width: 60vw; 
-    height: 100%; 
-    margin: 0.625rem;
-    font-size: 1.7rem;
-    box-sizing: border-box;
-}
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #005a87;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        button {
+            color: #ffffff;
+            background-color: #007BFF;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        textarea, input[type="file"] {
+            width: 80%;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .content {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .content > div {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 45%;
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #666;
+        }
     </style>
+</head>
+<body>
     <header>
-        <h1 class="titulio">Ánalizador lexiquito</h1>
+        <h1>Análisis Lexicográfico</h1>
     </header>
     <main>
-        <section id="section1">
-        <form method="POST" enctype="multipart/form-data">
-            <center>
-                <div>
-                    <input class="subirArchivo" type="file" id="file" name="file" accept=".txt">
-                </div>
-                <button type="submit">Subir y Ánalizar</button>
-                <p>Inserta el código para analizar</p>
-            </center>
-        </form>
+        <section style="text-align: center;">
+            <!-- Primer formulario para subir archivos -->
             <form method="POST" enctype="multipart/form-data">
-                <textarea name="code" placeholder="Inserte Aquí"></textarea>
-                <center><div>
-                    <button type="submit">Analizar Código</button>
-                </center></div>
+                <input type="file" class="subirArchivo" id="file" name="file" accept=".txt">
+                <button type="submit">Subir y Analizar</button>
+                <p>Inserta el código para analizar:</p>
+            </form>
+    
+            <!-- Segundo formulario para ingresar código manualmente -->
+            <form method="POST" enctype="multipart/form-data">
+                <textarea name="code" placeholder="Inserte aquí el código..."></textarea>
+                <button type="submit">Analizar Código</button>
             </form>
         </section>
-        <div class="fila">
+    
+        <div class="content">
             <div>
                 {% for token in tokens %}
                 <p>{{ token.type }}</p>
@@ -110,10 +93,13 @@ input[type="file"] {
             </div>
             <div>
                 {% for token in tokens %}
-                <p>Linea {{ token.line }} <br> {{ token.description }} : {{ token.value }}</p>
+                <p>Linea {{ token.line }}: {{ token.description }} - {{ token.value }}</p>
                 {% endfor %}
             </div>
         </div>
-    </main>   
+    </main>
+    
 </body>
 </html>
+
+
